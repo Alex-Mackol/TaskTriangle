@@ -22,31 +22,23 @@ namespace TaskTriangle.Controllers.ClassController
             toContinue = new DisplayToContinue();
         }
 
-        public void StartTriangleAnalizing()
+        public void StartTriangleAnalizing(string[] args)
         {
             List<Triangle> triangles = new List<Triangle>();
             string triangleName, triangleSide1, triangleSide2, triangleSide3;
+
             do
             {
                 displayTriangles.GetStringForTriangle(out triangleName, out triangleSide1, out triangleSide2, out triangleSide3);
-                //try
-                //{
-                    if (CheckOnValidationThreeSides(validator, triangleSide1, triangleSide2, triangleSide3) &&
-                        Validation(validator, triangleSide1, triangleSide2, triangleSide3))
-                    {
-                        triangles.Add(GetTriangle(triangleName, triangleSide1, triangleSide2, triangleSide3));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Problems are appeared!");
-                    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex);
-                //}
-
-
+                if (CheckOnValidationThreeSides(validator, triangleSide1, triangleSide2, triangleSide3) &&
+                    Validation(validator, triangleSide1, triangleSide2, triangleSide3))
+                {
+                    triangles.Add(GetTriangle(triangleName, triangleSide1, triangleSide2, triangleSide3));
+                }
+                else
+                {
+                    Console.WriteLine("Problems are appeared!");
+                }
             } while (toContinue.OnScreen());
 
             triangles.Sort(new TriangleSquareCompare());
@@ -56,7 +48,6 @@ namespace TaskTriangle.Controllers.ClassController
                displayTriangles.WriteText(triangle.ToString());
             }
         }
-
         private static Triangle GetTriangle(string name, string side1, string side2, string side3)
         {
             return new Triangle(name, double.Parse(side1), double.Parse(side2), double.Parse(side3));

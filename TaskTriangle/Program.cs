@@ -13,7 +13,7 @@ namespace TaskTriangle
         static void Main(string[] args)
         {
             TriangleController triangleController = new TriangleController();
-            triangleController.StartTriangleAnalizing();
+            triangleController.StartTriangleAnalizing(args);
             Console.ReadKey();
         }
     }

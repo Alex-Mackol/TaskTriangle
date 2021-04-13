@@ -19,8 +19,8 @@ namespace TaskTriangle.View.ClassView
         {
             WriteText("Do you want to input more envelopes ? (y / yes)");
             toContinue = Console.ReadLine();
-            return (toContinue.Equals("y", StringComparison.InvariantCultureIgnoreCase) ||
-                  toContinue.Equals("yes", StringComparison.InvariantCultureIgnoreCase));
+            return (toContinue.ToLower().Equals("y")||
+                  toContinue.ToLower().Equals("yes"));
         }
     }
 }
