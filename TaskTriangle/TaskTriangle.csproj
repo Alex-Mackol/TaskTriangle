@@ -48,6 +48,7 @@
     <Compile Include="Models\ClassModel\Triangle.cs" />
     <Compile Include="Models\ClassModel\TriangleSquareCompare.cs" />
     <Compile Include="Models\InterfaceModel\ITriangle.cs" />
+    <Compile Include="Models\InterfaceModel\ITriangleSquareCompare.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ClassView\Display.cs" />

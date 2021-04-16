@@ -10,5 +10,12 @@ namespace TaskTriangle.Models.InterfaceModel
     {
         string Name { get; }
         double Square { get; }
+        double Side1 { get; set; }
+        double Side2 { get; set; }
+        double Side3 { get; set; }
+
+        //double CalculateSquare();
+        //double CalculatePoluPerimeter();
+        //string ToString();
     }
 }

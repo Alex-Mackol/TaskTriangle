@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TaskTriangle.Models.InterfaceModel;
+
 namespace TaskTriangle.Models.ClassModel
 {
-    class TriangleSquareCompare : IComparer<Triangle>
+    class TriangleSquareCompare : ITriangleSquareCompare
     {
-        public int Compare(Triangle t1, Triangle t2)
+        public int Compare(ITriangle t1, ITriangle t2)
         {
             int resultCompare = 0;
             if (t1.Square > t2.Square)

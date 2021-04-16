@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using TaskTriangle.View.ClassView;
+using TaskTriangle.Models.InterfaceModel;
 using TaskTriangle.Models.ClassModel;
 
 namespace TaskTriangle.Controllers.ClassController
@@ -24,7 +25,7 @@ namespace TaskTriangle.Controllers.ClassController
 
         public void StartTriangleAnalizing(string[] args)
         {
-            List<Triangle> triangles = new List<Triangle>();
+            List<ITriangle> triangles = new List<ITriangle>();
             string triangleName, triangleSide1, triangleSide2, triangleSide3;
 
             do
