@@ -37,7 +37,7 @@ namespace TaskTriangle.Controllers.ClassController
                 }
                 else
                 {
-                    Console.WriteLine("Problems are appeared! Numbers are not validated");
+                    displayTriangles.WriteText("Problems are appeared! Numbers are not validated");
                 }
             } while (displayTriangles.ToContinueAddingTriangles());
 
@@ -65,6 +65,7 @@ namespace TaskTriangle.Controllers.ClassController
                 return validator.IsTriangleCreated(double.Parse(sides[0]), double.Parse(sides[1]), double.Parse(sides[2]));
             }
         }
+
         private bool CheckOnValidationThreeSides(string side1, string side2, string side3)
         {
             return Validation(side1) && Validation(side2) && Validation(side3);
