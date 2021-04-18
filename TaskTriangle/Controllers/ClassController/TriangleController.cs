@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using TaskTriangle.View.ClassView;
+using TaskTriangle.View.InterfaceView;
 using TaskTriangle.Models.InterfaceModel;
-using TaskTriangle.Models.ClassModel;
+using TaskTriangle.Controllers.InterfaceController;
 
 namespace TaskTriangle.Controllers.ClassController
 {
     class TriangleController
     {
-        DisplayTriangles displayTriangles;
-        Validator validator;
-        DisplayToContinue toContinue;
+        IDisplay displayTriangles;
+        IValidator validator;
+        IFactory factory;
+        IComparer<ITriangle> comparer;
 
-        public TriangleController()
+        public TriangleController(IValidator validator, IDisplay displayTriangles, IFactory factory, IComparer<ITriangle> comparer)
         {
-            displayTriangles = new DisplayTriangles();
-            validator = new Validator();
-            toContinue = new DisplayToContinue();
+            this.validator = validator;
+            this.displayTriangles = displayTriangles;
+            this.factory = factory;
+            this.comparer = comparer;
         }
 
-        public void StartTriangleAnalizing(string[] args)
+        public void StartTriangleAnalizing()
         {
             List<ITriangle> triangles = new List<ITriangle>();
             string triangleName, triangleSide1, triangleSide2, triangleSide3;
@@ -31,30 +30,31 @@ namespace TaskTriangle.Controllers.ClassController
             do
             {
                 displayTriangles.GetStringForTriangle(out triangleName, out triangleSide1, out triangleSide2, out triangleSide3);
-                if (CheckOnValidationThreeSides(validator, triangleSide1, triangleSide2, triangleSide3) &&
-                    Validation(validator, triangleSide1, triangleSide2, triangleSide3))
+                if (CheckOnValidationThreeSides(triangleSide1, triangleSide2, triangleSide3) &&
+                    Validation(triangleSide1, triangleSide2, triangleSide3))
                 {
                     triangles.Add(GetTriangle(triangleName, triangleSide1, triangleSide2, triangleSide3));
                 }
                 else
                 {
-                    Console.WriteLine("Problems are appeared!");
+                    Console.WriteLine("Problems are appeared! Numbers are not validated");
                 }
-            } while (toContinue.OnScreen());
+            } while (displayTriangles.ToContinueAddingTriangles());
 
-            triangles.Sort(new TriangleSquareCompare());
+            triangles.Sort(comparer);
 
-            foreach (Triangle triangle in triangles)
+            foreach (ITriangle triangle in triangles)
             {
                displayTriangles.WriteText(triangle.ToString());
             }
         }
-        private static Triangle GetTriangle(string name, string side1, string side2, string side3)
+
+        private ITriangle GetTriangle(string name, string side1, string side2, string side3)
         {
-            return new Triangle(name, double.Parse(side1), double.Parse(side2), double.Parse(side3));
+            return factory.CreateFigure(name, double.Parse(side1), double.Parse(side2), double.Parse(side3));
         }
 
-        private static bool Validation(Validator validator, params string[] sides)
+        private bool Validation(params string[] sides)
         {
             if (sides.Length != 3)
             {
@@ -65,9 +65,9 @@ namespace TaskTriangle.Controllers.ClassController
                 return validator.IsTriangleCreated(double.Parse(sides[0]), double.Parse(sides[1]), double.Parse(sides[2]));
             }
         }
-        private static bool CheckOnValidationThreeSides(Validator validator, string side1, string side2, string side3)
+        private bool CheckOnValidationThreeSides(string side1, string side2, string side3)
         {
-            return Validation(validator, side1) && Validation(validator, side2) && Validation(validator, side3);
+            return Validation(side1) && Validation(side2) && Validation(side3);
         }
     }
 }

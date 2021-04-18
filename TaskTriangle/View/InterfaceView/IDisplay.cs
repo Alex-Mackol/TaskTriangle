@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TaskTriangle.View.InterfaceView
 {
     interface IDisplay
     {
-        bool OnScreen();
+        bool ToContinueAddingTriangles();
+        void GetStringForTriangle(out string name, out string side1, out string side2, out string side3);
+        void WriteText(string message);
     }
 }

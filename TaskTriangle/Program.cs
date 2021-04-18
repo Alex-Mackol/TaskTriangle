@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using TaskTriangle.Controllers.ClassController;
+using TaskTriangle.Models.ClassModel;
+using TaskTriangle.View.ClassView;
 
 namespace TaskTriangle
 {
@@ -12,8 +10,15 @@ namespace TaskTriangle
     {
         static void Main(string[] args)
         {
-            TriangleController triangleController = new TriangleController();
-            triangleController.StartTriangleAnalizing(args);
+            #region Initialize Components
+            Validator validator = new Validator();
+            DisplayTriangles displayTriangles = new DisplayTriangles();
+            TriangleFactory triangleFactory = new TriangleFactory();
+            TriangleSquareCompare squareCompare = new TriangleSquareCompare();
+            #endregion
+
+            TriangleController triangleController = new TriangleController(validator, displayTriangles, triangleFactory, squareCompare);
+            triangleController.StartTriangleAnalizing();
             Console.ReadKey();
         }
     }

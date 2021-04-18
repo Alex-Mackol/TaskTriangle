@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskTriangle.View.ClassView
 {
@@ -13,7 +9,7 @@ namespace TaskTriangle.View.ClassView
             base.WriteText(message);
         }
 
-        public void GetStringForTriangle(out string name, out string side1, out string side2, out string side3)
+        public override void GetStringForTriangle(out string name, out string side1, out string side2, out string side3)
         {
             WriteText("Enter the triangle data as example.\n<name>, <side1>, <side2>, <side3>");
             string input_string = Console.ReadLine();
@@ -35,6 +31,15 @@ namespace TaskTriangle.View.ClassView
                 side2 = dataTriangle[2];
                 side3 = dataTriangle[3];
             }
+        }
+
+        string toContinue;
+        public override bool ToContinueAddingTriangles()
+        {
+            WriteText("Do you want to input more envelopes ? (y / yes)");
+            toContinue = Console.ReadLine();
+            return (toContinue.ToLower().Equals("y") ||
+                  toContinue.ToLower().Equals("yes"));
         }
     }
 }

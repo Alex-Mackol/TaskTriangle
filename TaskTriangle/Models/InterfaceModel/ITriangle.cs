@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TaskTriangle.Models.InterfaceModel
 {
     interface ITriangle
@@ -13,9 +8,5 @@ namespace TaskTriangle.Models.InterfaceModel
         double Side1 { get; set; }
         double Side2 { get; set; }
         double Side3 { get; set; }
-
-        //double CalculateSquare();
-        //double CalculatePoluPerimeter();
-        //string ToString();
     }
 }

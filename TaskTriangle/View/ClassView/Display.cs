@@ -1,15 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using TaskTriangle.View.InterfaceView;
 
 namespace TaskTriangle.View.ClassView
 {
-   abstract class Display
+   abstract class Display: IDisplay
     {
         public Display()
         {
+        }
+
+        public virtual void GetStringForTriangle(out string name, out string side1, out string side2, out string side3)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual bool ToContinueAddingTriangles()
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void WriteText(string message)
